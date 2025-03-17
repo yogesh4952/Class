@@ -1,40 +1,48 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 int main()
 {
-	struct node{
-		int data;
-		struct node *next;
-	};
+    struct node {
+        int data;
+        struct node *next;
+    };
 
-	int choice;
+    char choice;
+    struct node *newNode, *temp, *head;
+    head = NULL;
 
-	struct node *newNode, *head, *temp;
-	head = NULL;
+    do {
+        newNode = (struct node *)malloc(sizeof(struct node));
+        if (newNode == NULL) {
+            printf("Memory allocation failed\n");
+            return 1;
+        }
 
-do{
+        printf("\nEnter data for new Node: ");
+        scanf("%d", &newNode->data);
+        newNode->next = NULL;
 
-	newNode = (struct node *) malloc(sizeof(struct node));
-	printf("\nEnter data for newNode: ");
-	scanf("%d",&newNode->data);
-	newNode->next = NULL;
+        if (head == NULL) {
+            head = temp = newNode;
+        } else {
+            temp->next = newNode;
+            temp = newNode;
+        }
 
-	if(head ==NULL){
-		head = temp = newNode;
-	}else{
-		temp -> next = newNode;
-		temp = newNode;
-	}
+        printf("Do you want to add more nodes? (y/n): ");
+        scanf(" %c", &choice); // note the space before %c to consume newline
 
-	printf("\nDo you want to add mode node (yes for 0/ No for 1): ");
-	scanf("%d",&choice);
-}while(choice ==0);
+    } while (choice == 'y' || choice == 'Y');
 
-	temp = head;
-	while(temp != 0){
-		printf("%d\t",temp->data);
-		temp = temp -> next;
-	}
+    // Display the linked list
+    printf("\nLinked List: ");
+    temp = head;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
 
-	return 0;
+    return 0;
 }
