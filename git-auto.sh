@@ -21,14 +21,7 @@ fi
 
 git commit -m "$commit_msg"
 
-# 🔗 Check if remote is already set
-if git remote | grep -q origin; then
-  echo "🔗 Remote origin already exists."
-else
-  read -p "🔗 Enter GitHub repo URL (only once): " repo_url
-  git remote add origin "$repo_url"
-fi
-
+  
 # 📌 Push code to GitHub
 git branch -M main
 git push -u origin main
