@@ -74,5 +74,14 @@ int main()
 
     // }
     // printf("\n");
-    // return 0;
+
+    createNode(5);
+    createNode(15);
+    createNode(0);
+    createNode(28);
+
+    printf("Linked List elements are: \n");
+    display();
+    
+    return 0;
 }
