@@ -9,6 +9,4 @@ int main()
     {
         printf("The value of arr[%d] is %d\n", i + 1, arr[i]);
     }
-
-    return 0;
 }
