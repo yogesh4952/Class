@@ -83,5 +83,4 @@ int main()
     printf("Linked List elements are: \n");
     display();
     
-    return 0;
 }
