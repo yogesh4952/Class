@@ -16,7 +16,7 @@ struct Node *enqueue(struct Node *front, struct Node **rear, int data)
     newnode->next = NULL;
     if (front == NULL)
     {
-        *rear = newnode;
+    *rear = newnode;
         return newnode;
     }
     (*rear)->next = newnode;
