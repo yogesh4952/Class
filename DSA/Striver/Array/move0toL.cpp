@@ -1,47 +1,50 @@
-
-
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> moveZeros(int n, vector<int> a)
+void moveLast(vector<int> &arr)
 {
-    int j = -1;
-    // place the pointer j:
-    for (int i = 0; i < n; i++)
+    int zeroPostion = -1;
+    for (int i = 0; i < arr.size(); i++)
     {
-        if (a[i] == 0)
+        if (arr[i] == 0)
         {
-            j = i;
+            zeroPostion = i;
             break;
         }
     }
 
-    // no non-zero elements:
-    if (j == -1)
-        return a;
-
-    // Move the pointers i and j
-    // and swap accordingly:
-    for (int i = j + 1; i < n; i++)
+    if (zeroPostion == -1)
     {
-        if (a[i] != 0)
+        printf("There is no zero element in the array\n");
+        return;
+    }
+
+    for (int i = zeroPostion; i < arr.size(); i++)
+    {
+        if (arr[i] != 0)
         {
-            swap(a[i], a[j]);
-            j++;
+            arr[zeroPostion] = arr[i];
+            zeroPostion++;
         }
     }
-    return a;
+
+    while (zeroPostion < arr.size())
+
+    {
+        arr[zeroPostion++] = 0;
+        /* code */
+    }
 }
 
 int main()
 {
-    vector<int> arr = {1, 0, 2, 3, 2, 0, 0, 4, 5, 1};
-    int n = 10;
-    vector<int> ans = moveZeros(n, arr);
-    for (auto &it : ans)
+
+    vector<int> arr = {1, 0, 0, 2, 3, 4, 5, 0};
+
+    moveLast(arr);
+    for (int i = 0; i < arr.size(); i++)
     {
-        cout << it << " ";
+        cout << arr[i] << " ";
     }
-    cout << '\n';
     return 0;
 }
