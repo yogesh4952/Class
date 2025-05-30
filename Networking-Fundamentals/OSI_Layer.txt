@@ -1,0 +1,8 @@
+OSI LAYER - (Open system Interconnection)
+Osi layer has 7 layer - Physical Layer
+			Data Link Layer
+			Network layer
+			Transport layer
+			session layer
+			presentation layer
+			application layer
