@@ -2,7 +2,7 @@
 using namespace std;
 
 // Function to calculate size  longest subarray
-
+/*
 int lengthSubArr(vector<int> &arr, int sum)
 {
   int len = 0;
@@ -19,6 +19,34 @@ int lengthSubArr(vector<int> &arr, int sum)
     }
   }
   return len;
+}
+
+*/
+
+int lengthSubArr(vector<int> &arr, int maxSum)
+{
+  int left = 0;
+  int right = 0;
+  int sum = arr[0];
+  int maxLength = 0;
+
+  while (right < arr.size())
+  {
+    while (left <= right && sum > maxSum)
+    {
+      sum -= arr[left];
+      left++;
+    }
+
+    if (sum == maxSum)
+    {
+      maxLength = max(maxLength, right - left + 1);
+    }
+    right++;
+    if (right < arr.size())
+      sum += arr[right];
+  }
+  return maxLength;
 }
 
 int main()
