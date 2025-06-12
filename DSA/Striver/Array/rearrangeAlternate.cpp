@@ -1,37 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void alternate(vector<int> &arr)
+vector<int> alternate(vector<int> &arr)
 {
 
-  vector<int> positive;
-  vector<int> negative;
+  // Optimized version
+  int size = arr.size();
+  vector<int> ans(size, 0);
 
+  int posIndex = 0;
+  int negIndex = 1;
   for (int i = 0; i < arr.size(); i++)
   {
     if (arr[i] < 0)
     {
-      negative.push_back(arr[i]);
+
+      ans[negIndex] = arr[i];
+      negIndex += 2;
     }
     else
     {
-      positive.push_back(arr[i]);
+      ans[posIndex] = arr[i];
+      posIndex += 2;
     }
   }
-  for (int i = 0; i < arr.size() / 2; i++)
-  {
-    arr[i * 2] = positive[i];
-    arr[i * 2 + 1] = negative[i];
-  }
+
+  return ans;
 }
 int main()
 {
   vector<int> arr{1, 2, 3, -1, -2, -3};
-  alternate(arr);
+  vector<int> ans = alternate(arr);
   cout << "[";
   for (int i = 0; i < arr.size(); i++)
   {
-    cout << arr[i] << ",";
+    cout << ans[i] << ",";
   }
   cout << "]";
   return 0;
