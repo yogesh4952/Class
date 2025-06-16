@@ -15,10 +15,21 @@ void rotate(vector<vector<int>> &arr)
 
   for (int i = 0; i < n; i++)
   {
-    for (int j = 0; j < m; j++)
+    for (int j = i + 1; j < m; j++)
     {
-      arr[i][j] = arr[j][i];
+      if (i != j)
+      {
+        int temp = arr[i][j];
+
+        arr[i][j] = arr[j][i];
+        arr[j][i] = temp;
+      }
     }
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    reverse(arr[i].begin(), arr[i].end());
   }
 
   for (int i = 0; i < n; i++)
