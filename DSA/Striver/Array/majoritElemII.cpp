@@ -5,24 +5,56 @@ vector<int> majorityII(vector<int> &arr)
 {
   vector<int> ans;
 
-  unordered_map<int, int> temp;
+  int count1 = 0;
+  int count2 = 0;
+  int element1 = INT_MIN;
+  int element2 = INT_MIN;
 
-  for (int i = 0; i < arr.size(); i++)
+  int n = arr.size();
+  for (int i = 0; i < n; i++)
   {
-    if (temp.find(arr[i]) == temp.end())
+    if (element1 == arr[i])
     {
-      temp[arr[i]] = 0;
+      count1++;
     }
-    temp[arr[i]]++;
+    else if (element2 == arr[i])
+    {
+      count2++;
+    }
+
+    else if (count1 == 0)
+    {
+      count1 = 1;
+      element1 = arr[i];
+    }
+
+    else if (count2 == 0)
+    {
+      count2 = 1;
+      element2 = arr[i];
+    }
+    else
+    {
+      count1--;
+      count2--;
+    }
+  };
+  // Verification
+
+  count1 = count2 = 0;
+  for (int i = 0; i < n; i++)
+  {
+    if (arr[i] == element1)
+      count1++;
+    else if (arr[i] == element2)
+      count2;
   }
 
-  for (auto it : temp)
-  {
-    if (it.second > (arr.size() / 3))
-    {
-      ans.push_back(it.first);
-    }
-  }
+  if (count1 > n / 3)
+    ans.push_back(element1);
+
+  if (count2 > n / 3)
+    ans.push_back(element2);
   return ans;
 }
 int main()
