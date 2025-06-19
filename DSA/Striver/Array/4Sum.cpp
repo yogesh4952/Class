@@ -15,20 +15,28 @@ vector<vector<int>> fourSum(vector<int> &arr, int target)
   for (int i = 0; i < arr.size(); i++)
 
   {
+    if (i > 0 && arr[i] == arr[i - 1])
+      continue;
     for (int j = i + 1; j < arr.size(); j++)
     {
+
+      if (j > i + 1 && arr[j] == arr[j - 1])
+        continue;
       int left = j + 1;
       int right = arr.size() - 1;
       while (left < right)
       {
-        int sum = static_cast<long long>(arr[left]) + static_cast<long long>(arr[right]) + static_cast<long long>(arr[i]) + static_cast<long long>(arr[j]);
+        long long sum = static_cast<long long>(arr[left]) + static_cast<long long>(arr[right]) + static_cast<long long>(arr[i]) + static_cast<long long>(arr[j]);
         if (sum == target)
         {
-          vector<int> value = {arr[i], arr[j], arr[left], arr[right]};
 
-          sort(value.begin(), value.end());
+          ans.push_back({arr[i], arr[j], arr[left], arr[right]});
 
-          st.insert(value);
+          while (left < right && arr[left] == arr[left + 1])
+            left++;
+          while (left < right && arr[right] == arr[right - 1])
+            right--;
+
           left++;
           right--;
         }
@@ -42,11 +50,6 @@ vector<vector<int>> fourSum(vector<int> &arr, int target)
         }
       }
     }
-  }
-
-  for (auto &vc : st)
-  {
-    ans.push_back(vc);
   }
 
   return ans;
