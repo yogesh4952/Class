@@ -1,4 +1,4 @@
-#include<stdio.h>
+cd#include<stdio.h>
 #include<stdbool.h>
 #define SIZE 6
 int front = 0,rear = -1;
