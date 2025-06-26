@@ -5,33 +5,50 @@ int countRotation(vector<int> &arr)
 {
   int low = 0;
   int high = arr.size() - 1;
+  int index = -1;
 
-  int ans = -1;
+  int ans = INT_MAX;
   while (low <= high)
   {
     int mid = (low + high) / 2;
 
     if (arr[low] <= arr[high])
     {
-      return 0;
+      if (arr[low] < ans)
+      {
+        ans = min(ans, arr[low]);
+        index = low;
+      }
+      break;
     }
 
     if (arr[low] <= arr[mid])
     {
-      ans = (ans, high);
-      low = mid + 1;
+
+      if (arr[low] < ans)
+      {
+        ans = (ans, arr[low]);
+        index = low;
+      }
+      high = mid - 1;
     }
     else
     {
-      ans = max(ans, mid - 1);
-      high = mid - 1;
+
+      if (arr[mid] < ans)
+      {
+        ans = max(ans, arr[mid]);
+        index = mid;
+      }
+      low = mid + 1;
     }
   }
 
-  return ans;
+  return index;
 }
 int main()
 {
-  vector<int> arr = {3, 4, 1, 2, 2};
+
+  vector<int> arr = {3, 4, 0, 1, 2};
   cout << countRotation(arr);
 }
