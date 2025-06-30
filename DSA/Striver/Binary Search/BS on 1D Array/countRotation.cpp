@@ -16,7 +16,7 @@ int countRotation(vector<int> &arr)
     {
       if (arr[low] < ans)
       {
-        ans = min(ans, arr[low]);
+        ans = arr[low];
         index = low;
       }
       break;
@@ -27,7 +27,7 @@ int countRotation(vector<int> &arr)
 
       if (arr[low] < ans)
       {
-        ans = (ans, arr[low]);
+        ans = arr[low];
         index = low;
       }
       high = mid - 1;
@@ -37,7 +37,7 @@ int countRotation(vector<int> &arr)
 
       if (arr[mid] < ans)
       {
-        ans = max(ans, arr[mid]);
+        ans = arr[mid];
         index = mid;
       }
       low = mid + 1;
