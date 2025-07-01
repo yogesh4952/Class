@@ -40,7 +40,7 @@ int findPeak(vector<int> &arr)
 int main()
 {
 
-  vector<int> arr = {1, 2, 3, 4, 5, 3, 2, 1};
+  vector<int> arr = {1, 2, 3, 1};
   cout << findPeak(arr) << endl;
   return 0;
 }
