@@ -2,20 +2,51 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+
+bool isValid(vector<int> &arr, int maxPages, int students)
+{
+  int count = 1;
+  int sum = 0;
+  for (int i = 0; i < arr.size(); i++)
+  {
+
+    if (arr[i] > maxPages)
+      return false;
+
+    if (sum + arr[i] > maxPages)
+    {
+      count++;
+      sum = arr[i];
+    }
+    else
+    {
+      sum += arr[i];
+    }
+  }
+
+  return count <= students;
+}
+
 int bookAllocation(vector<int> &arr, int students)
 {
+  int low = *max_element(arr.begin(), arr.end());
+  int high = accumulate(arr.begin(), arr.end(), 0);
+
   if (arr.size() < students)
     return -1;
 
-  int ans = INT_MAX;
-
-  for (int i = 0; i < arr.size(); i++)
+  int ans = -1;
+  while (low <= high)
   {
-    int sum = 0;
-    for (int j = i; j < arr.size(); j++)
+    int mid = low + (high - low) / 2;
+    if (isValid(arr, mid, students))
     {
-      sum = sum + arr[j];
-      ans = min(ans, sum);
+      high = mid - 1;
+      ans = mid;
+    }
+    else
+    {
+      low = mid + 1;
     }
   }
 
@@ -24,7 +55,6 @@ int bookAllocation(vector<int> &arr, int students)
 
 int main()
 {
-  vector<int> arr = {2, 1, 3, 4};
+  vector<int> arr = {10, 20, 30, 40};
   cout << bookAllocation(arr, 2);
-  return 0;
 }
