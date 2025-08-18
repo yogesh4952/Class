@@ -7,5 +7,11 @@ where salary>avg(salary)
 
 
 -- Here we use subquery to do this
+
 select * from employee
 where salary > (select avg(salary) from employee)
+
+-- There are 3 types of subquery
+scalar,multiple row, correlated
+
+-- Here the above subquery is scalar subquery because it only returns only one value
