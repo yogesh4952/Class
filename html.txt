@@ -1,0 +1,30 @@
+--- HTML FORM ---
+The <form> element in HTML is used to create form for user input 
+
+Syntax:
+<Form action = 'index.html' method = 'POST' >
+
+--- attribute ---
+action-backend script
+method - get/POST
+
+target - target window to display result
+
+enctype - data encoding type
+
+--- GET/POST ---
+-> Parameters remains in browser history(url) /not
+-> Easier to hack/not
+-> Only ASCII character/also binary data
+-> URL length limit /no data restriction
+-> Not for sensitive data, info/yes
+-> Cached by browser /NO
+
+--- Form Element ---
+<input type ='text'>
+<input type ='password'>
+<input type ='Radio'>
+<input type ='checkbox'>
+<input type ='submit/reset/button' value="ok">
+<input type ='number'>
+<input type ='color'>
