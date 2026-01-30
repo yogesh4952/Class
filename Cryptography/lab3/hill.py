@@ -38,5 +38,6 @@ def main():
     for i in range(3):
         print(chr(c[i] + 65), end= "")
         
+    print('\n')
 if __name__ == "__main__":
     main()
