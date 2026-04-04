@@ -30,7 +30,7 @@ def main():
     print_header()
     print("Enter your list of random numbers separated by spaces: ")
     user_input = input()
-    random_numbers = list(map(float, user_input.split()))
+    random_numbers = list(map(float, user_input.replace(',', ' ').split()))
     d, ks_p_value = ks_test(random_numbers)
     print(f"KS Test: D-statistic = {d:.4f}, p-value = {ks_p_value:.4f}")
     chi_square_stat, chi_p_value = chi_square_test(random_numbers)
