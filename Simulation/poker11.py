@@ -26,8 +26,13 @@ def poker_test(nums, alpha):
     counts = {comb: 0 for comb in itertools.combinations_with_replacement('0123456789', 5)}
     
     for num in nums:
-        digits = str(num).replace('.', '')[:5]
-        counts[tuple(sorted(digits))] += 1
+        digits = str(round(num, 6)).replace('0.', '').replace('.', '')
+        digits = (digits + '00000')[:5]
+        key = tuple(sorted(digits))
+        if key in counts:
+            counts[key] += 1
+        else:
+            counts[key] = 1
     
     exp = n / len(counts)
     chi2_stat = sum((c - exp)**2 / exp for c in counts.values())
@@ -57,29 +62,51 @@ def run():
         return
     
     result, chi2_stat, p_val = poker_test(nums, alpha)
-    conclusion = f"P-value ({p_val:.4f}) > α ({alpha}) → Random" if result == "Accepted" else f"P-value ({p_val:.4f}) < α ({alpha}) → Not Random"
+    conclusion = (
+        f"P-value ({p_val:.4f}) > α ({alpha}) → Numbers are Random"
+        if result == "Accepted"
+        else f"P-value ({p_val:.4f}) < α ({alpha}) → Numbers are Not Random"
+    )
     
     out.delete(1.0, tk.END)
-    out.insert(tk.END, f"Chi-square: {chi2_stat:.4f}\nP-value: {p_val:.4f}\nResult: {result}\n\n{conclusion}")
+    out.insert(tk.END,
+        f"Chi-square Statistic : {chi2_stat:.4f}\n"
+        f"P-value              : {p_val:.4f}\n"
+        f"Result               : {result}\n\n"
+        f"Conclusion:\n{conclusion}"
+    )
 
 # GUI
 root = tk.Tk()
 root.title("Poker Test")
-root.geometry("400x500")
+root.geometry("400x520")
 
 f = tk.Frame(root)
 f.pack(pady=10)
 
-tk.Label(f, text="Name").grid(row=0, column=0); tk.Entry(f).grid(row=0, column=1)
-tk.Label(f, text="Roll").grid(row=1, column=0); tk.Entry(f).grid(row=1, column=1)
-tk.Label(f, text="Subject").grid(row=2, column=0); tk.Entry(f).grid(row=2, column=1)
+tk.Label(f, text="Name").grid(row=0, column=0, pady=4)
+entry_name = tk.Entry(f, justify="center")
+entry_name.grid(row=0, column=1, pady=4)
 
-tk.Button(f, text="Select File", command=choose).grid(row=3, column=0, columnspan=2, pady=5)
-file_label = tk.Label(f, text="No file", fg="blue")
+tk.Label(f, text="Roll").grid(row=1, column=0, pady=4)
+entry_roll = tk.Entry(f, justify="center")
+entry_roll.grid(row=1, column=1, pady=4)
+
+tk.Label(f, text="Subject").grid(row=2, column=0, pady=4)
+entry_subject = tk.Entry(f, justify="center")
+entry_subject.grid(row=2, column=1, pady=4)
+
+tk.Button(f, text="Select File", command=choose).grid(row=3, column=0, columnspan=2, pady=8)
+file_label = tk.Label(f, text="No file selected", fg="blue")
 file_label.grid(row=4, column=0, columnspan=2)
 
-tk.Label(f, text="Quantity").grid(row=5, column=0); entry_qty = tk.Entry(f); entry_qty.grid(row=5, column=1)
-tk.Label(f, text="Alpha").grid(row=6, column=0); entry_alpha = tk.Entry(f); entry_alpha.grid(row=6, column=1)
+tk.Label(f, text="Quantity").grid(row=5, column=0, pady=4)
+entry_qty = tk.Entry(f, justify="center")
+entry_qty.grid(row=5, column=1, pady=4)
+
+tk.Label(f, text="Alpha").grid(row=6, column=0, pady=4)
+entry_alpha = tk.Entry(f, justify="center")
+entry_alpha.grid(row=6, column=1, pady=4)
 
 tk.Button(f, text="Run Test", command=run).grid(row=7, column=0, columnspan=2, pady=10)
 
