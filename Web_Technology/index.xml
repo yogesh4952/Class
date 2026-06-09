@@ -1,0 +1,108 @@
+<?xml version = "1.0" encoding="utf-8">
+<!DOCTYPE Student SYSTEM "student.dtd">
+<Student>
+    <name>Yogesh Shah</name>
+    <age>14<age>
+</Student>
+
+
+
+<library>
+    <book>
+        <title>DBMS</title>
+        <author>Navathe</author>
+    </book>
+</library>
+
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="library">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element name="book">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title" type="xs:string"/>
+                            <xs:element name="author" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
+
+
+
+<university>
+    <department name="Computer Science">
+        <course code="CS101">
+            <title>Data Structures</title>
+            <credits>4</credits>
+            <instructor>
+                <name>Dr. Sharma</name>
+                <experience>10</experience>
+            </instructor>
+        </course>
+
+        <course code="CS102">
+            <title>DBMS</title>
+            <credits>3</credits>
+            <instructor>
+                <name>Dr. Joshi</name>
+                <experience>8</experience>
+            </instructor>
+        </course>
+
+    </department>
+</university>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="university">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element name="department">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <xs:element name="course" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+
+                                        <xs:element name="title" type="xs:string"/>
+                                        <xs:element name="credits" type="xs:int"/>
+
+                                        <xs:element name="instructor">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="name" type="xs:string"/>
+                                                    <xs:element name="experience" type="xs:int"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+
+                                    <xs:attribute name="code" type="xs:string" use="required"/>
+
+                                </xs:complexType>
+                            </xs:element>
+
+                        </xs:sequence>
+
+                        <xs:attribute name="name" type="xs:string" use="required"/>
+
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
