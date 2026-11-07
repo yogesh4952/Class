@@ -1,0 +1,16 @@
+@model StudentPortal.Models.Student
+<h1>Student Details</h1>
+
+
+<p>Name: @Model.Name</p>
+<p>Marks: @Model.Marks</p>
+<p>@Model.Id</p>
+
+@if (@Model.Marks >= 40)
+{
+    <p>Result: Pass</p>
+}
+else
+{
+    <p>Result: Fail</p>
+}
