@@ -1,0 +1,11 @@
+@model StudentPortal.Models.Student
+
+<h1>Student Details</h1>
+
+<p>ID: @Model.Id</p>
+<p>Name: @Model.Name</p>
+<p>Marks: @Model.Marks</p>
+
+<a asp-controller="Student" asp-action="Index">
+    Back to List
+</a>

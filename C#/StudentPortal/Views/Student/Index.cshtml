@@ -1,16 +1,38 @@
-@model StudentPortal.Models.Student
-<h1>Student Details</h1>
+@model List<StudentPortal.Models.Student>
 
+<h1>Student List</h1>
 
-<p>Name: @Model.Name</p>
-<p>Marks: @Model.Marks</p>
-<p>@Model.Id</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Marks</th>
+            <th>Result</th>
+        </tr>
+    </thead>
 
-@if (@Model.Marks >= 40)
-{
-    <p>Result: Pass</p>
-}
-else
-{
-    <p>Result: Fail</p>
-}
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Marks</td>
+                <td>
+                    @if (student.Marks >= 40)
+                    {
+                        <span>Pass</span>
+                    }
+                    else
+                    {
+                        <span>Fail</span>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Student" asp-action="Details" asp-route-id="@student.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
